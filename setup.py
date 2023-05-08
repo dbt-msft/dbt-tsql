@@ -7,7 +7,7 @@ from setuptools import find_namespace_packages, setup
 from setuptools.command.install import install
 
 package_name = "dbt-tsql"
-authors_list = ["Mikael Ene", "Anders Swanson", "Sam Debruyn", "Cor Zuurmond"]
+authors_list = ["Pradeep Srikakolapu", "Anders Swanson"]
 dbt_version = "1.3"
 description = """experimental monolith plugin"""
 
@@ -63,11 +63,11 @@ setup(
     long_description_content_type="text/markdown",
     license="MIT",
     author=", ".join(authors_list),
-    url="https://github.com/dbt-msft/dbt-sqlserver",
+    url="https://github.com/dbt-msft/dbt-tsql",
     packages=find_namespace_packages(include=["dbt", "dbt.*"]),
     include_package_data=True,
     install_requires=[
-        "dbt-core>=1.3.0",
+        "dbt-core~=1.3.0",
         "pyodbc>=4.0.32,!=4.0.34",
         "azure-identity>=1.10.0",
     ],
