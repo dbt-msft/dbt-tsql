@@ -9,7 +9,7 @@ Plugin = AdapterPlugin(
     adapter=SynapseAdapter,
     credentials=SynapseCredentials,
     include_path=synapse.PACKAGE_PATH,
-    dependencies=["sqlserver"],
+    dependencies=["azsql"],
 )
 
-__all__ = ["Plugin", "SynapseConnectionManager", "SynapseAdapter", "SynapseCredentials"]
+__all__ = ["Plugin", "SynapseAdapter", "SynapseCredentials"]

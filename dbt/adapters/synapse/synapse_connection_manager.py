@@ -1,6 +1,6 @@
-from dbt.adapters.sqlserver import SQLServerConnectionManager
+from dbt.adapters.azsql import AzureSQLConnectionManager
 
 
-class SynapseConnectionManager(SQLServerConnectionManager):
+class SynapseConnectionManager(AzureSQLConnectionManager):
     TYPE = "synapse"
     TOKEN = None
