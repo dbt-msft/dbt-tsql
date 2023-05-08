@@ -6,9 +6,9 @@
    type='view')-%}
    {%- set temp_view_sql = sql.replace("'", "''") -%}
 
-   {{ synapse__drop_relation_script(tmp_relation) }}
+   {{ azsql__drop_relation_script(tmp_relation) }}
 
-   {{ synapse__drop_relation_script(relation) }}
+   {{ azsql__drop_relation_script(relation) }}
 
    EXEC('create view [{{ tmp_relation.schema }}].[{{ tmp_relation.identifier }}] as
     {{ temp_view_sql }}
@@ -21,6 +21,6 @@
       )
     AS (SELECT * FROM [{{ tmp_relation.schema }}].[{{ tmp_relation.identifier }}])
 
-   {{ synapse__drop_relation_script(tmp_relation) }}
+   {{ azsql__drop_relation_script(tmp_relation) }}
 
 {% endmacro %}

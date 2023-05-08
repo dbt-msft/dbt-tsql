@@ -16,43 +16,43 @@ with open(os.path.join(this_directory, "README.md")) as f:
     long_description = f.read()
 
 
-# # get this from a separate file
-# def _dbt_sqlserver_version():
-#     _version_path = os.path.join(this_directory, "dbt", "adapters", "sqlserver", "__version__.py")
-#     _version_pattern = r"""version\s*=\s*["'](.+)["']"""
-#     with open(_version_path) as f:
-#         match = re.search(_version_pattern, f.read().strip())
-#         if match is None:
-#             raise ValueError(f"invalid version at {_version_path}")
-#         return match.group(1)
+# get this from a separate file
+def _dbt_sqlserver_version():
+    _version_path = os.path.join(this_directory, "dbt", "adapters", "azsql", "__version__.py")
+    _version_pattern = r"""version\s*=\s*["'](.+)["']"""
+    with open(_version_path) as f:
+        match = re.search(_version_pattern, f.read().strip())
+        if match is None:
+            raise ValueError(f"invalid version at {_version_path}")
+        return match.group(1)
 
 
-# package_version = _dbt_sqlserver_version()
-package_version = "1.3.0"
+package_version = _dbt_sqlserver_version()
+# package_version = "1.3.0"
 
-# # the package version should be the dbt version, with maybe some things on the
-# # ends of it. (0.18.1 vs 0.18.1a1, 0.18.1.1, ...)
-# if not package_version.startswith(dbt_version):
-#     raise ValueError(
-#         f"Invalid setup.py: package_version={package_version} must start with "
-#         f"dbt_version={dbt_version}"
-#     )
+# the package version should be the dbt version, with maybe some things on the
+# ends of it. (0.18.1 vs 0.18.1a1, 0.18.1.1, ...)
+if not package_version.startswith(dbt_version):
+    raise ValueError(
+        f"Invalid setup.py: package_version={package_version} must start with "
+        f"dbt_version={dbt_version}"
+    )
 
 
-# class VerifyVersionCommand(install):
-#     """Custom command to verify that the git tag matches our version"""
+class VerifyVersionCommand(install):
+    """Custom command to verify that the git tag matches our version"""
 
-#     description = "Verify that the git tag matches our version"
+    description = "Verify that the git tag matches our version"
 
-#     def run(self):
-#         tag = os.getenv("GITHUB_REF_NAME")
-#         tag_without_prefix = tag[1:]
+    def run(self):
+        tag = os.getenv("GITHUB_REF_NAME")
+        tag_without_prefix = tag[1:]
 
-#         if tag_without_prefix != package_version:
-#             info = "Git tag: {0} does not match the version of this app: {1}".format(
-#                 tag_without_prefix, package_version
-#             )
-#             sys.exit(info)
+        if tag_without_prefix != package_version:
+            info = "Git tag: {0} does not match the version of this app: {1}".format(
+                tag_without_prefix, package_version
+            )
+            sys.exit(info)
 
 
 setup(
@@ -71,9 +71,9 @@ setup(
         "pyodbc>=4.0.32,!=4.0.34",
         "azure-identity>=1.10.0",
     ],
-    # cmdclass={
-    #     "verify": VerifyVersionCommand,
-    # },
+    cmdclass={
+        "verify": VerifyVersionCommand,
+    },
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",

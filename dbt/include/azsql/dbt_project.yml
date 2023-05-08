@@ -1,0 +1,6 @@
+name: dbt_azsql
+version: 1.0
+
+config-version: 2
+
+macro-paths: ["macros"]

@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 
-from dbt.adapters.sqlserver import SQLServerCredentials
+from dbt.adapters.azsql import AzureSQLCredentials
 
 
 @dataclass
-class SynapseCredentials(SQLServerCredentials):
+class SynapseCredentials(AzureSQLCredentials):
     @property
     def type(self):
         return "synapse"
